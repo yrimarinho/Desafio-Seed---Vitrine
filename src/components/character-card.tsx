@@ -1,5 +1,6 @@
 import Character from "../types/character";
 
+// função recebe um objeto do tipo Character que respeita a interface Character
 export default function CharacterCard({ character }: { character: Character }) {
   return (
     <div className="bg-white rounded-lg shadow-md p-4">

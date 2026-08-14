@@ -7,10 +7,13 @@
 3. O filtro é aplicado apenas aos itens já carregados ou a todos os itens disponíveis na API? Por que essa escolha?
 
 4. Quais métodos HTTP foram utilizados e por que o projeto utiliza principalmente o método GET?
-Somente o GET foi utilizado, pois a aplicação apenas consome a API de personagens, sem adicionar novos dados (Post) ou alterar eles (Put ou Delete)
+
+Somente o GET foi utilizado, pois a aplicação apenas consome a API de personagens, sem adicionar novos dados (Post) ou alterar eles (Put ou Delete).
 
 5. Como o arquivo app/explorar/page.tsx se tornou o endereço /explorar da aplicação?
+
 O arquivo se tornou o endereço /explorar devido ao App Router do Next js. A estrutura da pasta app interpreta a page.tsx presente em sua raíz como a home e cada nova pasta (e subpasta) como uma nova rota.
 
 6. O que o layout.tsx faz e por que ele recebe um children?
+
 Ele serve como uma estrutura padrão que será aplicada nas demais páginas (children), assim os componentes que serão presentes em todas as páginas podem ser chamados apenas no layout.tsx

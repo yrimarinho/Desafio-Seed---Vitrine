@@ -1,3 +1,5 @@
+// interface que define as propriedades de um personagem
+
 export default interface Character {
   id: number;
   name: string;

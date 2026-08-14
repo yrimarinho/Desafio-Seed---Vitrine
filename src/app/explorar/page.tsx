@@ -7,7 +7,10 @@ import { useState, useEffect } from "react";
 export default function Explorar() {
     const [text, setText] = useState<string>(""); // armazena a string digitada no input
     const [search, setSearch] = useState<string>(""); // armazena a string digitada no input quando o botão de busca é clicado
-    const [characters, setCharacters] = useState<Character[]>([]); // armazena os personagens retornados pela API (serve para a busca por nome)
+
+    const [characters, setCharacters] = useState<Character[]>([]); // armazena os personagens retornados pela API
+    const [loading, setLoading] = useState(false); // indica se a requisição está em andamento
+    const [erro, setErro] = useState(false); // indica se houve algum erro na requisição
 
     // atualiza a variável search com o valor digitado no input quando o botão de busca é clicado
     function buscar() {
@@ -18,6 +21,7 @@ export default function Explorar() {
         setSearch(""); // limpa a variável search
         setText(""); // limpa a variável text
         setCharacters([]); // limpa a variável characters
+        setErro(false);
     }
 
     useEffect(() => {
@@ -27,10 +31,26 @@ export default function Explorar() {
 
         // se search não estiver vazia, faz a requisição para a API e atualiza a variável characters com os personagens retornados
         async function searchCharacters() {
-            // faz a requisição de personagens com o nome digitado no input
-            const resposta = await fetch(`https://rickandmortyapi.com/api/character/?name=${search}`);
-            const dados = await resposta.json();
-            setCharacters(dados.results);
+
+            setLoading(true);
+            setErro(false);
+
+            try {
+                // faz a requisição de personagens com o nome digitado no input
+                const resposta = await fetch(`https://rickandmortyapi.com/api/character/?name=${search}`);
+
+                if (!resposta.ok) {
+                    throw new Error("Erro ao buscar personagens");
+                }
+                const dados = await resposta.json();
+                setCharacters(dados.results);
+            }
+            catch (error) {
+                setErro(true);
+            }
+            finally {
+                setLoading(false);
+            }
         }
 
         searchCharacters();
@@ -100,11 +120,29 @@ export default function Explorar() {
             
             {search === "" ? (
                 <CharactersPage />
+            ) : loading ? (
+                <p className="mt-8 text-lg font-semibold text-gray-500">
+                    Carregando personagens...
+                </p>
+            ) : erro ? (
+                <p className="mt-8 text-lg font-semibold text-red-500">
+                    Erro ao buscar personagens
+                </p>
+            ) : characters.length === 0 ? (
+                <p className="mt-8 text-lg font-semibold text-gray-500">
+                    Nenhum personagem encontrado
+                </p>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-                    {characters.map((c) => (
-                        <CharacterCard key={c.id} character={c} />
-                    ))}
+                
+                <div>
+                    <p className="mt-8 text-lg font-semibold text-green-500 text-center">
+                        Personagens encontrados
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+                        {characters.map((c) => (
+                            <CharacterCard key={c.id} character={c} />
+                        ))}
+                    </div>
                 </div>
             )}
         </main>

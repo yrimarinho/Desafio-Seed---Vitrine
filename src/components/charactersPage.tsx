@@ -12,7 +12,8 @@ export default function CharactersPage() {
         async function fetchCharacters() {
             const resposta = await fetch(`https://rickandmortyapi.com/api/character`); // faz a requisição de todos os personagens
             const dados = await resposta.json(); // converte a resposta em JSON
-            setCharacters(dados.results); 
+            setCharacters(dados.results);
+            console.log(dados.results); // exibe os personagens no console 
         }
 
         fetchCharacters();

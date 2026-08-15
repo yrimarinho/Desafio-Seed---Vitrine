@@ -1,12 +1,13 @@
 ## Perguntas Obrigatorias
 
 1. **Em sua implementação, como você usou o useState e o useEffect? Cite os estados criados e o que cada um guarda.**
-    CharactersPage é o componente responsável pela vitrine de personagens:
+
+    "CharactersPage" é o componente responsável pela vitrine de personagens:
     - State *character*: guarda um conjunto de personagens (objetos que respeitam a interface Character) após uma requisição
     - State *page*: guarda a página atual
     - Effect: inicialmente faz requisições da página 1 da API (20 primeiros personagens, visto que as requisições são paginadas) e armazena os resultados no state *characters*, mas para cada vez que o state *page* é alterado uma nova requisição é feita com base no dado armazenado em *page* e seus dados são armazenados denovo em *characters*.
 
-    explorar/page é a página da vitrine de personagens:
+    "explorar/page" é a página da vitrine de personagens:
     - State *character*: guarda um conjunto de personagens (objetos que respeitam a interface Character) após uma requisição
     - State *loading*: armazena um boolean que indica se a requisição ainda está em andamento
     - State *erro*: armazena um boolean que indica se houve um erro durante a requisição

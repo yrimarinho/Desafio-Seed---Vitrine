@@ -58,93 +58,189 @@ export default function Explorar() {
     }, [search]);
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <h1 className="text-4xl font-bold">Conheça os Personagens</h1>
-            <div className="flex items-center gap-4 mt-4">
-                <input
-                    type="text"
-                    value={text}
-                    onChange={(event) => setText(event.target.value)}
-                    placeholder="Buscar personagem"
-                    className="
-                        w-72
-                        px-4 py-2
-                        rounded-lg
-                        border border-gray-300
-                        bg-white
-                        text-gray-800
-                        placeholder-gray-400
-                        shadow-sm
-                        outline-none
-                        focus:border-green-500
-                        focus:ring-2
-                        focus:ring-green-200
-                        transition
-                    "
-                />
+    <main className="min-h-screen bg-gray-100 px-4 py-10 sm:px-6 lg:px-8">
+        
+        <section className="text-center">
+            <p className="text-sm font-bold uppercase tracking-[0.3em] text-green-500">
+                Cidadela Hub
+            </p>
 
-                <button onClick={buscar} 
-                    className="
-                        px-4 py-2
-                        rounded-lg
-                        bg-green-500
-                        text-white
-                        font-medium
-                        hover:bg-green-600
-                        disabled:bg-gray-300
-                        disabled:text-gray-500
-                        disabled:cursor-not-allowed
-                        transition
-                    "
-                >
-                    Buscar
-                </button>
+            <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-gray-800 sm:text-5xl">
+                Conheça os Personagens
+            </h1>
 
-                <button onClick={limparBusca} 
-                    className="
-                        px-4 py-2
-                        rounded-lg
-                        bg-gray-500
-                        text-white
-                        font-medium
-                        hover:bg-gray-600
-                        disabled:bg-gray-300
-                        disabled:text-gray-500
-                        disabled:cursor-not-allowed
-                        transition
-                    "
-                >
-                    Limpar Busca
-                </button>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-gray-500 sm:text-lg">
+                Explore os personagens de Rick & Morty e encontre seus
+                favoritos através da busca.
+            </p>
+        </section>
+
+        <section className="mx-auto mt-8 w-full max-w-3xl">
+            <div className="
+                rounded-2xl
+                bg-white
+                p-4
+                shadow-md
+                sm:p-5
+            ">
+                <div className="
+                    flex
+                    flex-col
+                    items-stretch
+                    gap-3
+                    sm:flex-row
+                    sm:items-center
+                ">
+
+                    <input
+                        type="text"
+                        value={text}
+                        onChange={(event) => setText(event.target.value)}
+                        placeholder="Buscar personagem..."
+                        className="
+                            w-full
+                            flex-1
+                            rounded-xl
+                            border
+                            border-gray-300
+                            bg-gray-50
+                            px-4
+                            py-3
+                            text-gray-800
+                            placeholder-gray-400
+                            outline-none
+                            transition
+                            focus:border-green-500
+                            focus:bg-white
+                            focus:ring-2
+                            focus:ring-green-200
+                        "
+                    />
+
+                    <div className="flex gap-3">
+                        <button
+                            onClick={buscar}
+                            className="
+                                flex-1
+                                cursor-pointer
+                                rounded-xl
+                                bg-green-500
+                                px-5
+                                py-3
+                                font-semibold
+                                text-white
+                                shadow-sm
+                                transition-all
+                                duration-200
+                                hover:bg-green-600
+                                hover:shadow-md
+                                sm:flex-none
+                            "
+                        >
+                            Buscar
+                        </button>
+
+                        <button
+                            onClick={limparBusca}
+                            className="
+                                flex-1
+                                cursor-pointer
+                                rounded-xl
+                                bg-gray-500
+                                px-5
+                                py-3
+                                font-semibold
+                                text-white
+                                shadow-sm
+                                transition-all
+                                duration-200
+                                hover:bg-gray-600
+                                hover:shadow-md
+                                sm:flex-none
+                            "
+                        >
+                            Limpar
+                        </button>
+                    </div>
+                </div>
             </div>
-            
+        </section>
+
+        <section className="mx-auto mt-10 w-full max-w-7xl">
+
             {search === "" ? (
                 <CharactersPage />
+
             ) : loading ? (
-                <p className="mt-8 text-lg font-semibold text-gray-500">
-                    Carregando personagens...
-                </p>
-            ) : erro ? (
-                <p className="mt-8 text-lg font-semibold text-red-500">
-                    Erro ao buscar personagens
-                </p>
-            ) : characters.length === 0 ? (
-                <p className="mt-8 text-lg font-semibold text-gray-500">
-                    Nenhum personagem encontrado
-                </p>
-            ) : (
-                
-                <div>
-                    <p className="mt-8 text-lg font-semibold text-green-500 text-center">
-                        Personagens encontrados
+
+                <div className="flex justify-center py-16">
+                    <p className="
+                        text-lg
+                        font-semibold
+                        text-gray-500
+                    ">
+                        Carregando personagens...
                     </p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+                </div>
+
+            ) : erro ? (
+
+                <div className="flex justify-center py-16">
+                    <p className="
+                        rounded-xl
+                        bg-red-50
+                        px-6
+                        py-4
+                        text-lg
+                        font-semibold
+                        text-red-500
+                    ">
+                        Erro ao buscar personagens.
+                    </p>
+                </div>
+
+            ) : characters.length === 0 ? (
+
+                <div className="flex justify-center py-16">
+                    <p className="
+                        rounded-xl
+                        bg-white
+                        px-6
+                        py-4
+                        text-lg
+                        font-semibold
+                        text-gray-500
+                        shadow-sm
+                    ">
+                        Nenhum personagem encontrado.
+                    </p>
+                </div>
+
+            ) : (
+
+                <div>
+                    <p className="mb-6 text-center text-lg font-bold text-green-500">
+                            Personagens encontrados.
+                    </p>
+
+                    <div className="
+                        grid
+                        grid-cols-1
+                        gap-6
+                        sm:grid-cols-2
+                        lg:grid-cols-3
+                        xl:grid-cols-4
+                    ">
                         {characters.map((c) => (
-                            <CharacterCard key={c.id} character={c} />
+                            <CharacterCard
+                                key={c.id}
+                                character={c}
+                            />
                         ))}
                     </div>
                 </div>
             )}
-        </main>
-    );
+        </section>
+    </main>
+);
 }

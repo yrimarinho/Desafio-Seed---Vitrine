@@ -19,6 +19,7 @@ export default function Pagination({paginaAtual, totalPaginas, onAnterior, onPro
             hover:bg-green-600
             disabled:bg-gray-300
             disabled:text-gray-500
+            cursor-pointer
             disabled:cursor-not-allowed
             transition
           "
@@ -42,6 +43,7 @@ export default function Pagination({paginaAtual, totalPaginas, onAnterior, onPro
             hover:bg-green-600
             disabled:bg-gray-300
             disabled:text-gray-500
+            cursor-pointer
             disabled:cursor-not-allowed
             transition
           "

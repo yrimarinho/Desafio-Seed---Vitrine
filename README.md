@@ -14,6 +14,8 @@
     - State *search*: quando o botão de busca é clicado, a string presente em *text* é passada para *search*. É necessário pois a requisição só deve ser feita ao clicar no  botão de busca, assim o state só é atualizado quando uma nova requisição será feita
     - Effect: inicialmente, como o state *search* inicia vazio, nada acontece, mas quando *search* recebe um novo valor, uma nova requisição é feita com um filtro por nome e seus dados são armazenados em *characters*. Caso a requisição falhe ou ainda esteja carregando os states *erro* ou *loading* serão atualizados
 
+    **OBS**: somente a exibição geral dos personagens (no componente CharactersPage) possui navegaçãopor páginas, a busca por nome apresenta somente os primeiros 20 perosnagens filtrados 
+
 2. **O que aconteceria se o fetch fosse colocado direto no corpo do componente, fora do useEffect?**
     Nesse caso o fetch seria executado toda vez que o componente fosse renderizado. A vantagem de colocar o fetch dentro do useEffect é que ele só será executado quando o state (passado como um parâmetro para o useEffect) for atualizado, evitando requisições desnecessárias. 
 

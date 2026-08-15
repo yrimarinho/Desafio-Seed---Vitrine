@@ -20,7 +20,7 @@ export default function CharactersPage() {
 
     useEffect(() => {
         async function fetchCharacters() {
-            const resposta = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`); // faz a requisição de todos os personagens
+            const resposta = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`); // faz a requisição dos personagens
             const dados = await resposta.json(); // converte a resposta em JSON
             setCharacters(dados.results);
             console.log(dados.results); // exibe os personagens no console 

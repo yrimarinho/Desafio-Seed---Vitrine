@@ -1,5 +1,7 @@
 import PaginationProps from "../types/pagination";
 
+// botões de paginação para navegar entre as páginas de personagens
+// para que funcione corretamente, os parametros devem respeitar a interface PaginationProps
 export default function Pagination({paginaAtual, totalPaginas, onAnterior, onProxima,}: PaginationProps) {
   return (
     <div className="flex justify-center mt-8">
